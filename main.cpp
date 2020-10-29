@@ -14,49 +14,44 @@
 #define IPPORT (_argv[1])
 #define IPADDRESS (_argv[2])
 
+#include "TCPClient.h"
+
+void printCommandLine(){
+    std::cout << "C++ Client Menu:" << std::endl;
+    std::cout << "----------------------" << std::endl;
+    std::cout << "1. Start TCP v4 Client" << std::endl;
+    std::cout << "2. Start TVP v6 Client" << std::endl;
+    std::cout << "3. Start UDP Echo Client" << std::endl;
+    std::cout << "4. Exit" << std::endl;
+    std::cout << "----------------------" << std::endl;
+}
+
 int main(int _argc, char **_argv) {
+    int port = htons(atoi(IPPORT));
 
-    //Socket
-    int _addressFormat = AF_INET;                                                   //Format Ipv4
-    int _socketType = SOCK_STREAM;                                                  //TCP
-    int _socketProtocol = 0;                                                        //communication protocol > self check
+    printCommandLine();
 
-    int clientSocket = socket(_addressFormat, _socketType, _socketProtocol);    //create the client socket
-    //connect
-    sockaddr_in serverAddr;                                                     //
-    serverAddr.sin_family = AF_INET;                                            //Format Ipv4
-    serverAddr.sin_port = htons(atoi(IPPORT));                               //get the Port from the IPPORT (htons = host to network short, athoi = argument to integer)
-    serverAddr.sin_addr.s_addr = inet_addr(IPADDRESS);                          //get the IpAdress from IPADDRESS
-    memset(&(serverAddr.sin_zero), '\0',8);                             // \0 get copied in the first 8 char character of sin_zero //https://www.geeksforgeeks.org/memset-in-cpp/
+    while (true){
+        std::cout << "Choose server type to start: ";
 
-    if (connect(clientSocket, (sockaddr *) &serverAddr, sizeof(serverAddr)) >=
-        0) {   //check is connection successful > errorCode >= 0
-        char msg[BUFFER_SIZE];                                                  //creates a charArray
-        while (strcmp(msg, "exit") != 0 && strcmp(msg, "shutdown") != 0) {
-            //read message
-            std::cout << "Bitte um Eingabe: ";
-            std::cin.getline(msg,BUFFER_SIZE);                                     //get the input line and save it into msg
-            strcat(msg, "\0");
-            int msgSize = strlen(msg) + 1;                                          //get the length of the msg
-            //send
-            if (!send(clientSocket, msg, msgSize, 0) >0) {                          //send the message and check the return value of the send method
-                std::cout << "Error Sending message" << std::endl;
-            }
+        char msg[BUFFER_SIZE];
+        std::cin.getline(msg,BUFFER_SIZE);                                     //get the input line and save it into msg
+        strcat(msg, "\0");
 
-            //receive
-            char receiveMsg[BUFFER_SIZE];                                               //create a char array
-            if (recv(clientSocket, receiveMsg, BUFFER_SIZE, 0) >0) {                    //recv the message and check the error code (return value)
-                    std::cout << receiveMsg << std::endl;
-            }
-            memset(receiveMsg, '\0', sizeof(receiveMsg));
-        } // exit while
-        memset(msg, '\0', sizeof(msg));                                       //reset msg
-    } else {
-        std::cout << "Fehler in der Connect" << std::endl;
-        if (close(clientSocket) == -1){
-            std::cout << "Fehler in der Close" << std::endl;                    //closesocket
+        if (strcmp(msg, "1") == 0){
+            TCPClient *s1 = new TCPClient(port, inet_addr(IPADDRESS));
+            s1->initializeSocket();
+            s1->startSocket();
+            delete s1;
+        } else if(strcmp(msg, "2")== 0){
+
+        } else if(strcmp(msg, "3")== 0){
+
+        } else if(strcmp(msg, "4")== 0){
+            exit(0);
         }
     }
+
 }
 
 #endif
