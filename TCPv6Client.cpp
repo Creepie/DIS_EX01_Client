@@ -26,7 +26,7 @@ void TCPv6Client::initializeSocket() {
     int _socketType = SOCK_STREAM;                                                  //TCP
     int _socketProtocol = 0;                                                        //communication protocol > self check
 
-    clientSocket = socket(_addressFormat, _socketType, _socketProtocol);    //create the client socket
+    clientSocket = socket(_addressFormat, _socketType, _socketProtocol);        //create the client socket
 }
 
 void TCPv6Client::startSocket() {
@@ -37,10 +37,12 @@ void TCPv6Client::startSocket() {
     serverAddr.sin6_port = ipPort;
     serverAddr.sin6_scope_id = 0;
 
-    int res = inet_pton(AF_INET6, "::1", &(serverAddr.sin6_addr));
+    if (inet_pton(AF_INET6, "::1", &(serverAddr.sin6_addr)) <1){
+        std::cout << "Fehler bei convert" << std::endl;
+    }
 
     if (connect(clientSocket, (sockaddr *) &serverAddr, sizeof(serverAddr)) >=0) {   //check is connection successful > errorCode >= 0
-        char msg[BUFFER_SIZE];                                                  //creates a charArray
+        char msg[BUFFER_SIZE];                                                      //creates a charArray
         memset(msg, '\0' , sizeof(msg));
         while (strcmp(msg, "exit") != 0 && strcmp(msg, "shutdown") != 0) {
             //read message

@@ -16,6 +16,7 @@
 
 #include "TCPClient.h"
 #include "UDPClient.h"
+#include "TCPv6Client.h"
 
 void printCommandLine(){
     std::cout << "C++ Client Menu:" << std::endl;
@@ -45,7 +46,10 @@ int main(int _argc, char **_argv) {
             s1->startSocket();
             delete s1;
         } else if(strcmp(msg, "2")== 0){
-
+            TCPv6Client *v6 = new TCPv6Client(port,inet_addr(IPADDRESS));
+            v6->initializeSocket();
+            v6->startSocket();
+            delete v6;
         } else if(strcmp(msg, "3")== 0){
             UDPClient *u1 = new UDPClient(port, inet_addr(IPADDRESS));
             u1->initializeSocket();
