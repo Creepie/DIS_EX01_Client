@@ -38,6 +38,7 @@ void TCPClient::startSocket() {
 
     if (connect(clientSocket, (sockaddr *) &serverAddr, sizeof(serverAddr)) >=0) {   //check is connection successful > errorCode >= 0
         char msg[BUFFER_SIZE];                                                  //creates a charArray
+        memset(msg, '\0' , sizeof(msg));
         while (strcmp(msg, "exit") != 0 && strcmp(msg, "shutdown") != 0) {
             //read message
             std::cout << "Bitte um Eingabe: ";

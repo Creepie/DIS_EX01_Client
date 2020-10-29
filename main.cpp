@@ -15,6 +15,7 @@
 #define IPADDRESS (_argv[2])
 
 #include "TCPClient.h"
+#include "UDPClient.h"
 
 void printCommandLine(){
     std::cout << "C++ Client Menu:" << std::endl;
@@ -46,7 +47,10 @@ int main(int _argc, char **_argv) {
         } else if(strcmp(msg, "2")== 0){
 
         } else if(strcmp(msg, "3")== 0){
-
+            UDPClient *u1 = new UDPClient(port, inet_addr(IPADDRESS));
+            u1->initializeSocket();
+            u1->startSocket();
+            delete u1;
         } else if(strcmp(msg, "4")== 0){
             exit(0);
         }

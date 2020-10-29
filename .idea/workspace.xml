@@ -11,11 +11,10 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="af651330-2b45-4921-9096-b6080d82f5df" name="Default Changelist" comment="add TCPClient">
-      <change afterPath="$PROJECT_DIR$/UDPClient.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/UDPClient.h" afterDir="false" />
+    <list default="true" id="af651330-2b45-4921-9096-b6080d82f5df" name="Default Changelist" comment="add UDPClient (not finished)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TCPClient.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/TCPClient.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UDPClient.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/UDPClient.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -81,7 +80,7 @@
       <workItem from="1603955337848" duration="755000" />
       <workItem from="1603956111265" duration="26000" />
       <workItem from="1603956942554" duration="117000" />
-      <workItem from="1603957084701" duration="3660000" />
+      <workItem from="1603957084701" duration="5064000" />
     </task>
     <task id="LOCAL-00001" summary="add TCPClient">
       <created>1603962663371</created>
@@ -90,7 +89,14 @@
       <option name="project" value="LOCAL" />
       <updated>1603962663371</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="add UDPClient (not finished)">
+      <created>1603963131253</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1603963131253</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -98,7 +104,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="add TCPClient" />
-    <option name="LAST_COMMIT_MESSAGE" value="add TCPClient" />
+    <MESSAGE value="add UDPClient (not finished)" />
+    <option name="LAST_COMMIT_MESSAGE" value="add UDPClient (not finished)" />
   </component>
   <component name="WindowStateProjectService">
     <state x="1615" y="102" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1603956126874">
@@ -116,37 +123,37 @@
       <screen x="0" y="23" width="1440" height="801" />
     </state>
     <state x="513" y="135" key="Github.UntrackedFilesDialog/0.23.1440.801/1440.23.1366.1001@0.23.1440.801" timestamp="1603961356208" />
-    <state width="1398" height="268" key="GridCell.Tab.0.bottom" timestamp="1603962681877">
+    <state width="1398" height="268" key="GridCell.Tab.0.bottom" timestamp="1603964448851">
       <screen x="0" y="23" width="1440" height="801" />
     </state>
-    <state width="1398" height="268" key="GridCell.Tab.0.bottom/0.23.1440.801/1440.23.1366.1001@0.23.1440.801" timestamp="1603962681877" />
+    <state width="1398" height="268" key="GridCell.Tab.0.bottom/0.23.1440.801/1440.23.1366.1001@0.23.1440.801" timestamp="1603964448851" />
     <state width="1324" height="352" key="GridCell.Tab.0.bottom/0.23.1440.801/1440.23.1366.1001@1440.23.1366.1001" timestamp="1603957059260" />
     <state width="678" height="353" key="GridCell.Tab.0.bottom/0.23.1440.801@0.23.1440.801" timestamp="1603900520104" />
     <state width="1398" height="271" key="GridCell.Tab.0.bottom/0.23.1440.803/1440.23.1366.1001@0.23.1440.803" timestamp="1603280189632" />
     <state width="1398" height="271" key="GridCell.Tab.0.bottom/0.23.1440.805/1440.23.1366.1001@0.23.1440.805" timestamp="1603279415163" />
     <state width="1324" height="271" key="GridCell.Tab.0.bottom/0.23.1440.805/1440.23.1366.1001@1440.23.1366.1001" timestamp="1603278672323" />
-    <state width="1398" height="268" key="GridCell.Tab.0.center" timestamp="1603962681877">
+    <state width="1398" height="268" key="GridCell.Tab.0.center" timestamp="1603964448850">
       <screen x="0" y="23" width="1440" height="801" />
     </state>
-    <state width="1398" height="268" key="GridCell.Tab.0.center/0.23.1440.801/1440.23.1366.1001@0.23.1440.801" timestamp="1603962681877" />
+    <state width="1398" height="268" key="GridCell.Tab.0.center/0.23.1440.801/1440.23.1366.1001@0.23.1440.801" timestamp="1603964448850" />
     <state width="1324" height="352" key="GridCell.Tab.0.center/0.23.1440.801/1440.23.1366.1001@1440.23.1366.1001" timestamp="1603957059260" />
     <state width="678" height="353" key="GridCell.Tab.0.center/0.23.1440.801@0.23.1440.801" timestamp="1603900520103" />
     <state width="1398" height="271" key="GridCell.Tab.0.center/0.23.1440.803/1440.23.1366.1001@0.23.1440.803" timestamp="1603280189631" />
     <state width="1398" height="271" key="GridCell.Tab.0.center/0.23.1440.805/1440.23.1366.1001@0.23.1440.805" timestamp="1603279415161" />
     <state width="1324" height="271" key="GridCell.Tab.0.center/0.23.1440.805/1440.23.1366.1001@1440.23.1366.1001" timestamp="1603278672323" />
-    <state width="1398" height="268" key="GridCell.Tab.0.left" timestamp="1603962681876">
+    <state width="1398" height="268" key="GridCell.Tab.0.left" timestamp="1603964448850">
       <screen x="0" y="23" width="1440" height="801" />
     </state>
-    <state width="1398" height="268" key="GridCell.Tab.0.left/0.23.1440.801/1440.23.1366.1001@0.23.1440.801" timestamp="1603962681876" />
+    <state width="1398" height="268" key="GridCell.Tab.0.left/0.23.1440.801/1440.23.1366.1001@0.23.1440.801" timestamp="1603964448850" />
     <state width="1324" height="352" key="GridCell.Tab.0.left/0.23.1440.801/1440.23.1366.1001@1440.23.1366.1001" timestamp="1603957059260" />
     <state width="678" height="353" key="GridCell.Tab.0.left/0.23.1440.801@0.23.1440.801" timestamp="1603900520103" />
     <state width="1398" height="271" key="GridCell.Tab.0.left/0.23.1440.803/1440.23.1366.1001@0.23.1440.803" timestamp="1603280189631" />
     <state width="1398" height="271" key="GridCell.Tab.0.left/0.23.1440.805/1440.23.1366.1001@0.23.1440.805" timestamp="1603279415161" />
     <state width="1324" height="271" key="GridCell.Tab.0.left/0.23.1440.805/1440.23.1366.1001@1440.23.1366.1001" timestamp="1603278672322" />
-    <state width="1398" height="268" key="GridCell.Tab.0.right" timestamp="1603962681877">
+    <state width="1398" height="268" key="GridCell.Tab.0.right" timestamp="1603964448851">
       <screen x="0" y="23" width="1440" height="801" />
     </state>
-    <state width="1398" height="268" key="GridCell.Tab.0.right/0.23.1440.801/1440.23.1366.1001@0.23.1440.801" timestamp="1603962681877" />
+    <state width="1398" height="268" key="GridCell.Tab.0.right/0.23.1440.801/1440.23.1366.1001@0.23.1440.801" timestamp="1603964448851" />
     <state width="1324" height="352" key="GridCell.Tab.0.right/0.23.1440.801/1440.23.1366.1001@1440.23.1366.1001" timestamp="1603957059260" />
     <state width="678" height="353" key="GridCell.Tab.0.right/0.23.1440.801@0.23.1440.801" timestamp="1603900520104" />
     <state width="1398" height="271" key="GridCell.Tab.0.right/0.23.1440.803/1440.23.1366.1001@0.23.1440.803" timestamp="1603280189631" />
@@ -168,9 +175,9 @@
       <screen x="0" y="23" width="1440" height="801" />
     </state>
     <state width="678" height="353" key="GridCell.Tab.1.right/0.23.1440.801@0.23.1440.801" timestamp="1603900520104" />
-    <state x="320" y="163" key="Vcs.Push.Dialog.v2" timestamp="1603962664952">
+    <state x="320" y="163" key="Vcs.Push.Dialog.v2" timestamp="1603963132875">
       <screen x="0" y="23" width="1440" height="801" />
     </state>
-    <state x="320" y="163" key="Vcs.Push.Dialog.v2/0.23.1440.801/1440.23.1366.1001@0.23.1440.801" timestamp="1603962664952" />
+    <state x="320" y="163" key="Vcs.Push.Dialog.v2/0.23.1440.801/1440.23.1366.1001@0.23.1440.801" timestamp="1603963132875" />
   </component>
 </project>
