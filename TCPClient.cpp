@@ -20,7 +20,10 @@ TCPClient::TCPClient(int _port, int _ipAddr) {
     ipAddr = _ipAddr;
 }
 void TCPClient::initializeSocket() {
-//Socket
+
+    /**
+    * Socket
+    */
     int _addressFormat = AF_INET;                                                   //Format Ipv4
     int _socketType = SOCK_STREAM;                                                  //TCP
     int _socketProtocol = 0;                                                        //communication protocol > self check
@@ -29,18 +32,26 @@ void TCPClient::initializeSocket() {
 }
 
 void TCPClient::startSocket() {
-    //connect
-    sockaddr_in serverAddr;                                                     //
-    serverAddr.sin_family = AF_INET;                                            //Format Ipv4
-    serverAddr.sin_port = ipPort;                                                //get the Port from the IPPORT (htons = host to network short, athoi = argument to integer)
-    serverAddr.sin_addr.s_addr = ipAddr;                                        //get the IpAdress from IPADDRESS
-    memset(&(serverAddr.sin_zero), '\0',8);                             // \0 get copied in the first 8 char character of sin_zero //https://www.geeksforgeeks.org/memset-in-cpp/
 
-    if (connect(clientSocket, (sockaddr *) &serverAddr, sizeof(serverAddr)) >=0) {   //check is connection successful > errorCode >= 0
+    /**
+     * Connect
+     */
+    sockaddr_in serverAddr;                                //save serverAddr in it
+    serverAddr.sin_family = AF_INET;                       //Format Ipv4
+    serverAddr.sin_port = ipPort;                          //get the Port from the IPPORT (htons = host to network short, athoi = argument to integer)
+    serverAddr.sin_addr.s_addr = ipAddr;                   //get the IpAdress from IPADDRESS
+    memset(&(serverAddr.sin_zero), '\0',8);         // \0 get copied in the first 8 char character of sin_zero //https://www.geeksforgeeks.org/memset-in-cpp/
+
+    /**
+     * check is connection successful > errorCode >= 0
+     */
+    if (connect(clientSocket, (sockaddr *) &serverAddr, sizeof(serverAddr)) >=0) {
         char msg[BUFFER_SIZE];                                                  //creates a charArray
         memset(msg, '\0' , sizeof(msg));
         while (strcmp(msg, "exit") != 0 && strcmp(msg, "shutdown") != 0) {
-            //read message
+            /**
+             * send message and check the return val of the method ( >0 means no error)
+             */
             std::cout << "Bitte um Eingabe: ";
             std::cin.getline(msg,BUFFER_SIZE);                                     //get the input line and save it into msg
             strcat(msg, "\0");
@@ -50,7 +61,9 @@ void TCPClient::startSocket() {
                 std::cout << "Error Sending message" << std::endl;
             }
 
-            //receive
+            /**
+             * receive the message and check the return val of the method ( >0 means no error)
+             */
             char receiveMsg[BUFFER_SIZE];                                               //create a char array
             if (recv(clientSocket, receiveMsg, BUFFER_SIZE, 0) >0) {                    //recv the message and check the error code (return value)
                 std::cout << receiveMsg << std::endl;

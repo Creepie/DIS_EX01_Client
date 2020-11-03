@@ -20,7 +20,10 @@ UDPClient::UDPClient(int _port, int _ipAddr) {
 }
 
 void UDPClient::initializeSocket() {
-    //Socket
+
+    /**
+     * Socket
+     */
     int _addressFormat = AF_INET;                                                   //Format Ipv4
     int _socketType = SOCK_DGRAM;                                                  //UDP
     int _socketProtocol = 0;                                                        //communication protocol > self check
@@ -30,11 +33,16 @@ void UDPClient::initializeSocket() {
 
 void UDPClient::startSocket() {
     std::cout << "Ready to write" << std::endl;
-    //recvfrom
+
+    /**
+     * save the from data (in this case we dont need it because we always talk to the same server)
+     */
     sockaddr_in from;
     socklen_t frommSize = sizeof(from);
 
-    //send
+    /**
+     * set toAddr (server)
+     */
     sockaddr_in toAddr;
     toAddr.sin_family = AF_INET;
     toAddr.sin_port = ipPort;
@@ -45,7 +53,9 @@ void UDPClient::startSocket() {
     char msg[BUFFER_SIZE];
     memset(msg, '\0' , sizeof(msg));
     while (strcmp(msg, "exit") != 0 && strcmp(msg, "shutdown") != 0){
-        //send
+        /**
+         * Send and check the return value of the sendTo method (if -1 we had an error)
+         */
         std::cout << "Bitte um Eingabe: ";
         std::cin.getline(msg,BUFFER_SIZE);                                     //get the input line and save it into msg
         strcat(msg, "\0");
@@ -54,12 +64,16 @@ void UDPClient::startSocket() {
         if (sendto(clientSocket, msg, msgSize,0,(sockaddr*) &toAddr, toSize) == -1){
             std::cout << "Fehler in der Send" << std::endl;
         }
-        //recvfrom
+
+        /**
+         * recvfrom
+         * get the ECHO from the server and check the return value ( >= 0 if no error)
+         */
         char receiveMsg[BUFFER_SIZE];
         if (recvfrom(clientSocket, receiveMsg, BUFFER_SIZE, 0, (sockaddr*) &from, &frommSize) >=0 ){
             std::cout << receiveMsg << std::endl;
         }
-    }
+    } //end while
     if (close(clientSocket) == -1){
         std::cout << "Fehler in der Close" << std::endl;                    //closesocket
     }

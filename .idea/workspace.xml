@@ -13,8 +13,9 @@
   <component name="ChangeListManager">
     <list default="true" id="af651330-2b45-4921-9096-b6080d82f5df" name="Default Changelist" comment="add TCPClient v6">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TCPClient.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/TCPClient.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TCPv6Client.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/TCPv6Client.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UDPClient.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/UDPClient.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,11 +49,6 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
   </component>
   <component name="RunManager">
-    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="DIS_EX01_Client" type="CMakeRunConfiguration" factoryName="Application" PROGRAM_PARAMS="5050 127.0.0.1" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="DIS_EX01_Client" TARGET_NAME="DIS_EX01_Client" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="DIS_EX01_Client" RUN_TARGET_NAME="DIS_EX01_Client">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -79,7 +75,10 @@
       <workItem from="1603955337848" duration="755000" />
       <workItem from="1603956111265" duration="26000" />
       <workItem from="1603956942554" duration="117000" />
-      <workItem from="1603957084701" duration="8276000" />
+      <workItem from="1603957084701" duration="8319000" />
+      <workItem from="1603972725995" duration="59000" />
+      <workItem from="1604304548068" duration="1549000" />
+      <workItem from="1604385395110" duration="807000" />
     </task>
     <task id="LOCAL-00001" summary="add TCPClient">
       <created>1603962663371</created>
@@ -109,7 +108,14 @@
       <option name="project" value="LOCAL" />
       <updated>1603966790521</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="add TCPClient v6">
+      <created>1603967746274</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1603967746274</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -138,42 +144,46 @@
       <screen x="0" y="23" width="1440" height="801" />
     </state>
     <state x="513" y="135" key="Github.UntrackedFilesDialog/0.23.1440.801/1440.23.1366.1001@0.23.1440.801" timestamp="1603961356208" />
-    <state width="1398" height="268" key="GridCell.Tab.0.bottom" timestamp="1603967674076">
+    <state width="1398" height="374" key="GridCell.Tab.0.bottom" timestamp="1604385511532">
       <screen x="0" y="23" width="1440" height="801" />
     </state>
-    <state width="1398" height="268" key="GridCell.Tab.0.bottom/0.23.1440.801/1440.23.1366.1001@0.23.1440.801" timestamp="1603967674076" />
+    <state width="1398" height="268" key="GridCell.Tab.0.bottom/0.23.1440.801/1440.23.1366.1001@0.23.1440.801" timestamp="1603967776212" />
     <state width="1324" height="352" key="GridCell.Tab.0.bottom/0.23.1440.801/1440.23.1366.1001@1440.23.1366.1001" timestamp="1603957059260" />
+    <state width="1398" height="374" key="GridCell.Tab.0.bottom/0.23.1440.801/1440.23.1920.1057@0.23.1440.801" timestamp="1604385511532" />
     <state width="678" height="353" key="GridCell.Tab.0.bottom/0.23.1440.801@0.23.1440.801" timestamp="1603900520104" />
     <state width="1398" height="271" key="GridCell.Tab.0.bottom/0.23.1440.803/1440.23.1366.1001@0.23.1440.803" timestamp="1603280189632" />
     <state width="1398" height="271" key="GridCell.Tab.0.bottom/0.23.1440.805/1440.23.1366.1001@0.23.1440.805" timestamp="1603279415163" />
-    <state width="1324" height="271" key="GridCell.Tab.0.bottom/0.23.1440.805/1440.23.1366.1001@1440.23.1366.1001" timestamp="1603278672323" />
-    <state width="1398" height="268" key="GridCell.Tab.0.center" timestamp="1603967674075">
+    <state width="1324" height="351" key="GridCell.Tab.0.bottom/0.23.1440.805/1440.23.1366.1001@1440.23.1366.1001" timestamp="1604306228368" />
+    <state width="1398" height="374" key="GridCell.Tab.0.center" timestamp="1604385511531">
       <screen x="0" y="23" width="1440" height="801" />
     </state>
-    <state width="1398" height="268" key="GridCell.Tab.0.center/0.23.1440.801/1440.23.1366.1001@0.23.1440.801" timestamp="1603967674075" />
+    <state width="1398" height="268" key="GridCell.Tab.0.center/0.23.1440.801/1440.23.1366.1001@0.23.1440.801" timestamp="1603967776212" />
     <state width="1324" height="352" key="GridCell.Tab.0.center/0.23.1440.801/1440.23.1366.1001@1440.23.1366.1001" timestamp="1603957059260" />
+    <state width="1398" height="374" key="GridCell.Tab.0.center/0.23.1440.801/1440.23.1920.1057@0.23.1440.801" timestamp="1604385511531" />
     <state width="678" height="353" key="GridCell.Tab.0.center/0.23.1440.801@0.23.1440.801" timestamp="1603900520103" />
     <state width="1398" height="271" key="GridCell.Tab.0.center/0.23.1440.803/1440.23.1366.1001@0.23.1440.803" timestamp="1603280189631" />
     <state width="1398" height="271" key="GridCell.Tab.0.center/0.23.1440.805/1440.23.1366.1001@0.23.1440.805" timestamp="1603279415161" />
-    <state width="1324" height="271" key="GridCell.Tab.0.center/0.23.1440.805/1440.23.1366.1001@1440.23.1366.1001" timestamp="1603278672323" />
-    <state width="1398" height="268" key="GridCell.Tab.0.left" timestamp="1603967674075">
+    <state width="1324" height="351" key="GridCell.Tab.0.center/0.23.1440.805/1440.23.1366.1001@1440.23.1366.1001" timestamp="1604306228367" />
+    <state width="1398" height="374" key="GridCell.Tab.0.left" timestamp="1604385511530">
       <screen x="0" y="23" width="1440" height="801" />
     </state>
-    <state width="1398" height="268" key="GridCell.Tab.0.left/0.23.1440.801/1440.23.1366.1001@0.23.1440.801" timestamp="1603967674075" />
+    <state width="1398" height="268" key="GridCell.Tab.0.left/0.23.1440.801/1440.23.1366.1001@0.23.1440.801" timestamp="1603967776212" />
     <state width="1324" height="352" key="GridCell.Tab.0.left/0.23.1440.801/1440.23.1366.1001@1440.23.1366.1001" timestamp="1603957059260" />
+    <state width="1398" height="374" key="GridCell.Tab.0.left/0.23.1440.801/1440.23.1920.1057@0.23.1440.801" timestamp="1604385511530" />
     <state width="678" height="353" key="GridCell.Tab.0.left/0.23.1440.801@0.23.1440.801" timestamp="1603900520103" />
     <state width="1398" height="271" key="GridCell.Tab.0.left/0.23.1440.803/1440.23.1366.1001@0.23.1440.803" timestamp="1603280189631" />
     <state width="1398" height="271" key="GridCell.Tab.0.left/0.23.1440.805/1440.23.1366.1001@0.23.1440.805" timestamp="1603279415161" />
-    <state width="1324" height="271" key="GridCell.Tab.0.left/0.23.1440.805/1440.23.1366.1001@1440.23.1366.1001" timestamp="1603278672322" />
-    <state width="1398" height="268" key="GridCell.Tab.0.right" timestamp="1603967674076">
+    <state width="1324" height="351" key="GridCell.Tab.0.left/0.23.1440.805/1440.23.1366.1001@1440.23.1366.1001" timestamp="1604306228366" />
+    <state width="1398" height="374" key="GridCell.Tab.0.right" timestamp="1604385511531">
       <screen x="0" y="23" width="1440" height="801" />
     </state>
-    <state width="1398" height="268" key="GridCell.Tab.0.right/0.23.1440.801/1440.23.1366.1001@0.23.1440.801" timestamp="1603967674076" />
+    <state width="1398" height="268" key="GridCell.Tab.0.right/0.23.1440.801/1440.23.1366.1001@0.23.1440.801" timestamp="1603967776212" />
     <state width="1324" height="352" key="GridCell.Tab.0.right/0.23.1440.801/1440.23.1366.1001@1440.23.1366.1001" timestamp="1603957059260" />
+    <state width="1398" height="374" key="GridCell.Tab.0.right/0.23.1440.801/1440.23.1920.1057@0.23.1440.801" timestamp="1604385511531" />
     <state width="678" height="353" key="GridCell.Tab.0.right/0.23.1440.801@0.23.1440.801" timestamp="1603900520104" />
     <state width="1398" height="271" key="GridCell.Tab.0.right/0.23.1440.803/1440.23.1366.1001@0.23.1440.803" timestamp="1603280189631" />
     <state width="1398" height="271" key="GridCell.Tab.0.right/0.23.1440.805/1440.23.1366.1001@0.23.1440.805" timestamp="1603279415162" />
-    <state width="1324" height="271" key="GridCell.Tab.0.right/0.23.1440.805/1440.23.1366.1001@1440.23.1366.1001" timestamp="1603278672323" />
+    <state width="1324" height="351" key="GridCell.Tab.0.right/0.23.1440.805/1440.23.1366.1001@1440.23.1366.1001" timestamp="1604306228367" />
     <state width="678" height="353" key="GridCell.Tab.1.bottom" timestamp="1603900520105">
       <screen x="0" y="23" width="1440" height="801" />
     </state>
@@ -190,9 +200,9 @@
       <screen x="0" y="23" width="1440" height="801" />
     </state>
     <state width="678" height="353" key="GridCell.Tab.1.right/0.23.1440.801@0.23.1440.801" timestamp="1603900520104" />
-    <state x="320" y="163" key="Vcs.Push.Dialog.v2" timestamp="1603966793049">
+    <state x="320" y="163" key="Vcs.Push.Dialog.v2" timestamp="1603967747528">
       <screen x="0" y="23" width="1440" height="801" />
     </state>
-    <state x="320" y="163" key="Vcs.Push.Dialog.v2/0.23.1440.801/1440.23.1366.1001@0.23.1440.801" timestamp="1603966793049" />
+    <state x="320" y="163" key="Vcs.Push.Dialog.v2/0.23.1440.801/1440.23.1366.1001@0.23.1440.801" timestamp="1603967747528" />
   </component>
 </project>
