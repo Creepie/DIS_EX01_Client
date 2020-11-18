@@ -15,11 +15,19 @@
 
 #define BUFFER_SIZE 1024
 
+/**
+ * the Constructor save the given parm into the global params
+ * @param _port represent the given port
+ * @param _ipAddr represent the given ipAddress
+ */
 TCPv6Client::TCPv6Client(int _port, int _ipAddr) {
     ipPort = _port;
     ipAddr = _ipAddr;
 }
 
+/**
+ * this method initialize the clientSocket
+ */
 void TCPv6Client::initializeSocket() {
 
     /**
@@ -32,6 +40,9 @@ void TCPv6Client::initializeSocket() {
     clientSocket = socket(_addressFormat, _socketType, _socketProtocol);        //create the client socket
 }
 
+/**
+ * in this method the socket connect to the server and write to the server
+ */
 void TCPv6Client::startSocket() {
     /**
      * connect
@@ -46,6 +57,7 @@ void TCPv6Client::startSocket() {
      */
     if (inet_pton(AF_INET6, "::1", &(serverAddr.sin6_addr)) <1){
         std::cout << "Fehler bei convert" << std::endl;
+        return;
     }
 
     /**
@@ -83,5 +95,5 @@ void TCPv6Client::startSocket() {
             std::cout << "Fehler in der Close" << std::endl;                    //closesocket
         }
     }
-}
+} //end startSocket method
 

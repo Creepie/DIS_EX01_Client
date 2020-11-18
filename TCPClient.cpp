@@ -15,10 +15,19 @@
 
 #define BUFFER_SIZE 1024
 
+/**
+ * the Constructor save the given parm into the global params
+ * @param _port is the given port
+ * @param _ipAddr is the given ipAddress
+ */
 TCPClient::TCPClient(int _port, int _ipAddr) {
     ipPort = _port;
     ipAddr = _ipAddr;
 }
+
+/**
+ * this method initialize the clientSocket
+ */
 void TCPClient::initializeSocket() {
 
     /**
@@ -31,6 +40,9 @@ void TCPClient::initializeSocket() {
     clientSocket = socket(_addressFormat, _socketType, _socketProtocol);    //create the client socket
 }
 
+/**
+ * in this method the socket connect to the server > after that the client communicate with the server
+ */
 void TCPClient::startSocket() {
 
     /**
@@ -66,7 +78,7 @@ void TCPClient::startSocket() {
              */
             char receiveMsg[BUFFER_SIZE];                                               //create a char array
             if (recv(clientSocket, receiveMsg, BUFFER_SIZE, 0) >0) {                    //recv the message and check the error code (return value)
-                std::cout << receiveMsg << std::endl;
+                std::cout << receiveMsg;
             }
             memset(receiveMsg, '\0', sizeof(receiveMsg));
         } // exit while
@@ -77,5 +89,5 @@ void TCPClient::startSocket() {
             std::cout << "Fehler in der Close" << std::endl;                    //closesocket
         }
     }
-}
+} //end of startSocket method
 

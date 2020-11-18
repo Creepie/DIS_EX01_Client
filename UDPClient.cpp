@@ -14,11 +14,19 @@
 
 #define BUFFER_SIZE 1024
 
+/**
+ * the Constructor save the given parm into the global params
+ * @param _port represent the given port
+ * @param _ipAddr reoresent the given ipAddress
+ */
 UDPClient::UDPClient(int _port, int _ipAddr) {
     ipPort = _port;
     ipAddr = _ipAddr;
 }
 
+/**
+ * this method initialize the Socket
+ */
 void UDPClient::initializeSocket() {
 
     /**
@@ -31,6 +39,10 @@ void UDPClient::initializeSocket() {
     clientSocket =  socket(_addressFormat, _socketType, _socketProtocol);
 }
 
+/**
+ * in this method the socket connect to the server > after that the client communicate with the server
+ * (Server only gives an ECHO replay)
+ */
 void UDPClient::startSocket() {
     std::cout << "Ready to write" << std::endl;
 
@@ -72,9 +84,11 @@ void UDPClient::startSocket() {
         char receiveMsg[BUFFER_SIZE];
         if (recvfrom(clientSocket, receiveMsg, BUFFER_SIZE, 0, (sockaddr*) &from, &frommSize) >=0 ){
             std::cout << receiveMsg << std::endl;
+        } else{
+            return;
         }
     } //end while
     if (close(clientSocket) == -1){
         std::cout << "Fehler in der Close" << std::endl;                    //closesocket
     }
-}
+}// end of startSocket method
