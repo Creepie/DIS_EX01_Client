@@ -39,6 +39,7 @@ void TCPClient::initializeSocket() {
     int mSocketType = SOCK_STREAM;                                                  //TCP
     int mSocketProtocol = 0;                                                        //communication protocol > self check
 
+    //save the created socket into global variable clientSocket
     clientSocket = socket(mAddressFormat, mSocketType, mSocketProtocol);    //create the client socket
 }
 

@@ -21,7 +21,9 @@
  * @param _ipAddr represent the given ipAddress
  */
 TCPv6Client::TCPv6Client(int _port, int _ipAddr) {
+    //global variable for the ipPort
     ipPort = _port;
+    //global variable for the ipAddress
     ipAddr = _ipAddr;
 }
 
@@ -31,13 +33,14 @@ TCPv6Client::TCPv6Client(int _port, int _ipAddr) {
 void TCPv6Client::initializeSocket() {
 
     /**
-    * Socket
+    * Socket > initialize variables for creating the clientSocket
     */
-    int _addressFormat = AF_INET6;                                                   //Format Ipv6
-    int _socketType = SOCK_STREAM;                                                  //TCP
-    int _socketProtocol = 0;                                                        //communication protocol > self check
+    int mAddressFormat = AF_INET6;                                                   //Format Ipv6
+    int mSocketType = SOCK_STREAM;                                                  //TCP
+    int mSocketProtocol = 0;                                                        //communication protocol > self check
 
-    clientSocket = socket(_addressFormat, _socketType, _socketProtocol);        //create the client socket
+    //save the created socket into global variable clientSocket
+    clientSocket = socket(mAddressFormat, mSocketType, mSocketProtocol);        //create the client socket
 }
 
 /**
@@ -46,16 +49,17 @@ void TCPv6Client::initializeSocket() {
 void TCPv6Client::startSocket() {
     /**
      * connect
+     * add data into mServerAddr > we need it for the connect
      */
-    struct sockaddr_in6 serverAddr;
-    serverAddr.sin6_family = AF_INET6;
-    serverAddr.sin6_flowinfo = 0;
-    serverAddr.sin6_port = ipPort;
-    serverAddr.sin6_scope_id = 0;
+    struct sockaddr_in6 mServerAddr;
+    mServerAddr.sin6_family = AF_INET6;
+    mServerAddr.sin6_flowinfo = 0;
+    mServerAddr.sin6_port = ipPort;
+    mServerAddr.sin6_scope_id = 0;
     /**
-     *
+     * convert the ipv4 into ipv6
      */
-    if (inet_pton(AF_INET6, "::1", &(serverAddr.sin6_addr)) <1){
+    if (inet_pton(AF_INET6, "::1", &(mServerAddr.sin6_addr)) < 1){
         std::cout << "Fehler bei convert" << std::endl;
         return;
     }
@@ -63,32 +67,37 @@ void TCPv6Client::startSocket() {
     /**
      * connect client with server and check return value ( >= 0 means no error)
      */
-    if (connect(clientSocket, (sockaddr *) &serverAddr, sizeof(serverAddr)) >=0) {
-        char msg[BUFFER_SIZE];                                                      //creates a charArray
-        memset(msg, '\0' , sizeof(msg));
-        while (strcmp(msg, "exit") != 0 && strcmp(msg, "shutdown") != 0) {
+    if (connect(clientSocket, (sockaddr *) &mServerAddr, sizeof(mServerAddr)) >= 0) {
+        char mMsg[BUFFER_SIZE];                                                      //creates a charArray
+        memset(mMsg, '\0' , sizeof(mMsg));
+        while (strcmp(mMsg, "exit") != 0 && strcmp(mMsg, "shutdown") != 0) {
             //read message
             std::cout << "Bitte um Eingabe: ";
-            std::cin.getline(msg,BUFFER_SIZE);                                     //get the input line and save it into msg
-            strcat(msg, "\0");
-            int msgSize = strlen(msg) + 1;                                          //get the length of the msg
+            std::cin.getline(mMsg, BUFFER_SIZE);                                     //get the input line and save it into mMsg
+            strcat(mMsg, "\0");
+            int msgSize = strlen(mMsg) + 1;                                          //get the length of the mMsg
             /**
              * send the message and check the return val ( >0 means no error)
              */
-            if (!send(clientSocket, msg, msgSize, 0) >0) {                          //send the message and check the return value of the send method
+            if (!send(clientSocket, mMsg, msgSize, 0) > 0) {                          //send the message and check the return value of the send method
                 std::cout << "Error Sending message" << std::endl;
+                return;
             }
 
             /**
              * receive the message and check the return value ( >0 means no error)
              */
-            char receiveMsg[BUFFER_SIZE];                                               //create a char array
-            if (recv(clientSocket, receiveMsg, BUFFER_SIZE, 0) >0) {                    //recv the message and check the error code (return value)
-                std::cout << receiveMsg << std::endl;
+            char mReceiveMsg[BUFFER_SIZE];                                               //create a char array
+            if (recv(clientSocket, mReceiveMsg, BUFFER_SIZE, 0) > 0) {                    //recv the message and check the error code (return value)
+                std::cout << mReceiveMsg << std::endl;
+            } else{
+                std::cout << "Error mReceiveMsg" << std::endl;
+                return;
             }
-            memset(receiveMsg, '\0', sizeof(receiveMsg));
+            //reset the message
+            memset(mReceiveMsg, '\0', sizeof(mReceiveMsg));
         } // exit while
-        memset(msg, '\0', sizeof(msg));                                       //reset msg
+        memset(mMsg, '\0', sizeof(mMsg));                                       //reset mMsg
     } else {
         std::cout << "Fehler in der Connect" << std::endl;
         if (close(clientSocket) == -1){
