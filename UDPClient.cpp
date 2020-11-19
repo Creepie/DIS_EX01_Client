@@ -20,7 +20,9 @@
  * @param _ipAddr reoresent the given ipAddress
  */
 UDPClient::UDPClient(int _port, int _ipAddr) {
+    //global variable for the ipPort
     ipPort = _port;
+    //global variable for the ipAddress
     ipAddr = _ipAddr;
 }
 
@@ -30,13 +32,14 @@ UDPClient::UDPClient(int _port, int _ipAddr) {
 void UDPClient::initializeSocket() {
 
     /**
-     * Socket
+     * Socket > initialize variables for creating the clientSocket
      */
-    int _addressFormat = AF_INET;                                                   //Format Ipv4
-    int _socketType = SOCK_DGRAM;                                                  //UDP
-    int _socketProtocol = 0;                                                        //communication protocol > self check
+    int mAddressFormat = AF_INET;                                                   //Format Ipv4
+    int mSocketType = SOCK_DGRAM;                                                  //UDP
+    int mSocketProtocol = 0;                                                        //communication protocol > self check
 
-    clientSocket =  socket(_addressFormat, _socketType, _socketProtocol);
+    //clientSocket is a global variable of the socket
+    clientSocket =  socket(mAddressFormat, mSocketType, mSocketProtocol);
 }
 
 /**
@@ -62,33 +65,35 @@ void UDPClient::startSocket() {
     memset(&(toAddr.sin_zero),'\0',0);
     int toSize = sizeof(toAddr);
 
-    char msg[BUFFER_SIZE];
-    memset(msg, '\0' , sizeof(msg));
-    while (strcmp(msg, "exit") != 0 && strcmp(msg, "shutdown") != 0){
+    char mMsg[BUFFER_SIZE];
+    memset(mMsg, '\0' , sizeof(mMsg));
+    while (strcmp(mMsg, "exit") != 0 && strcmp(mMsg, "shutdown") != 0){
         /**
          * Send and check the return value of the sendTo method (if -1 we had an error)
          */
         std::cout << "Bitte um Eingabe: ";
-        std::cin.getline(msg,BUFFER_SIZE);                                     //get the input line and save it into msg
-        strcat(msg, "\0");
-        int msgSize = strlen(msg) + 1;
+        std::cin.getline(mMsg, BUFFER_SIZE);                                     //get the input line and save it into mMsg
+        strcat(mMsg, "\0");
+        int msgSize = strlen(mMsg) + 1;
 
-        if (sendto(clientSocket, msg, msgSize,0,(sockaddr*) &toAddr, toSize) == -1){
+        if (sendto(clientSocket, mMsg, msgSize, 0, (sockaddr*) &toAddr, toSize) == -1){
             std::cout << "Fehler in der Send" << std::endl;
+            return;
         }
 
         /**
          * recvfrom
          * get the ECHO from the server and check the return value ( >= 0 if no error)
          */
-        char receiveMsg[BUFFER_SIZE];
-        if (recvfrom(clientSocket, receiveMsg, BUFFER_SIZE, 0, (sockaddr*) &from, &frommSize) >=0 ){
-            std::cout << receiveMsg << std::endl;
+        char mReceiveMsg[BUFFER_SIZE];
+        if (recvfrom(clientSocket, mReceiveMsg, BUFFER_SIZE, 0, (sockaddr*) &from, &frommSize) >= 0 ){
+            std::cout << mReceiveMsg << std::endl;
         } else{
             return;
         }
     } //end while
     if (close(clientSocket) == -1){
-        std::cout << "Fehler in der Close" << std::endl;                    //closesocket
+        std::cout << "Fehler in der Close" << std::endl;  //closesocket
+        exit(-1);
     }
 }// end of startSocket method
